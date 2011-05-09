@@ -1,6 +1,7 @@
 body{
 	background:#666666 url('/images/background.png');
 	color:white;
+	font-family:'Cabin', arial, serif;
 }
 h1#title{
 	text-align:center;
