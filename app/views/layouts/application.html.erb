@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %> of HPNeo</title>
+  <%= stylesheet_link_tag :all %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+	<h1 id="title"><%= title %> of HPNeo</h1>
+	<div id="app">
+		<%= yield %>
+	</div>
+	<%= javascript_include_tag 'jquery', 'rails', 'libs/json2', 'libs/underscore', 'libs/backbone' %>
+	<%= javascript_include_tag 'models/day', 'views/day.index', 'views/day.show', 'controllers', 'application' %>
+</body>
+</html>
