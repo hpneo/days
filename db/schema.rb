@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(:version => 20110509040639) do
   create_table "contents", :force => true do |t|
     t.integer  "day_id"
     t.text     "content"
-    t.string   "type"
+    t.string   "content_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

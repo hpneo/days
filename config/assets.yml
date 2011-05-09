@@ -1,0 +1,15 @@
+embed_assets: on
+
+javascripts:
+  libs:
+    - public/javascripts/jquery.js
+    - public/javascripts/rails.js
+    - public/javascripts/libs/json2.js
+    - public/javascripts/libs/underscore.js
+    - public/javascripts/libs/backbone.js
+  app:
+    - public/javascripts/application.js
+    - public/javascripts/controllers.js
+    - app/views/**/*.jst
+    - public/javascripts/models/*.js
+    - public/javascripts/views/*.js

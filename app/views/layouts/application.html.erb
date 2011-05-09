@@ -11,7 +11,7 @@
 	<div id="app">
 		<%= yield %>
 	</div>
-	<%= javascript_include_tag 'jquery', 'rails', 'libs/json2', 'libs/underscore', 'libs/backbone' %>
-	<%= javascript_include_tag 'models/day', 'views/day.index', 'views/day.show', 'controllers', 'application' %>
+	<%= include_javascripts :libs %>
+	<%= include_javascripts :app %>
 </body>
 </html>

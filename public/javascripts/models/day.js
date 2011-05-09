@@ -1,6 +1,6 @@
 var Day = Backbone.Model.extend({
 	initialize: function(options){
-		this.url = 'days/'+options.number
+		this.url = 'days/'+options.number;
 	}
 });
 

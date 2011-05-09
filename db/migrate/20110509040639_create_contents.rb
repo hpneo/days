@@ -3,7 +3,7 @@ class CreateContents < ActiveRecord::Migration
     create_table :contents do |t|
       t.integer :day_id
       t.text :content
-      t.string :type
+      t.string :content_type
 
       t.timestamps
     end

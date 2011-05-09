@@ -56,3 +56,8 @@ h1#title{
 	z-index:1;
 	text-shadow:#707070 1px 1px 0px;
 }
+#day #day_contents{
+	display:none;
+	width:100%;
+	height:100%;
+}

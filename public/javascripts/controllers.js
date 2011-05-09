@@ -14,11 +14,10 @@ var AppController = Backbone.Controller.extend({
 		});
 	},
 	day: function(number){
-		var day = new Day({number: number});
-		day.fetch({
+		var contents = new Contents({day: number});
+		contents.fetch({
 			success: function(){
-				new DayShow({model: day});
-				console.log(day);
+				new DayShow({collection: contents});
 			}
 		});
 	}
