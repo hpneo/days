@@ -22,7 +22,8 @@ var DayShow = Backbone.View.extend({
 			$('a.day_content').fancybox();
 			$('#content_wrapper').masonry({
 				singleMode: true,
-				columnWidth: 200
+				columnWidth: 200,
+				animate: true
 			});
 		});
 	}

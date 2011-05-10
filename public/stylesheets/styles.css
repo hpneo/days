@@ -47,23 +47,28 @@ h1#title a{
 	height:400px;
 	margin:0 auto;
 }
-#day h2#day_number{
-	display:block;
-	position:absolute;
-	width:60%;
-	height:400px;
-	color:#5b5b5b;
-	font-size:12em;
-	margin:0;
-	text-align:center;
-	line-height:400px;
-	z-index:1;
-	text-shadow:#707070 1px 1px 0px;
-}
-#day #day_contents{
-	display:none;
-	width:60%;
-	height:400px;
-	position:absolute;
-	z-index:2;
-}
+	#day h2#day_number{
+		display:block;
+		position:absolute;
+		width:60%;
+		height:400px;
+		color:#5b5b5b;
+		font-size:12em;
+		margin:0;
+		text-align:center;
+		line-height:400px;
+		z-index:1;
+		text-shadow:#707070 1px 1px 0px;
+	}
+	#day #day_contents{
+		display:none;
+		width:60%;
+		height:400px;
+		position:absolute;
+		z-index:2;
+	}
+		#day #day_contents .day_content{
+			display:block;
+			width:200px;
+			float:left;
+		}
