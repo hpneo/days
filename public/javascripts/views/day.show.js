@@ -14,7 +14,7 @@ var DayShow = Backbone.View.extend({
 		$('#day').append('<div id="day_contents"></div>');
 		$('#day_contents').delay(1500).fadeIn('slow', function(){
 			self.collection.each(function(model, index){
-				var model_template = $(JST['content_image']({model: model}));
+				var model_template = $(JST['contents/content_image']({model: model}));
 				model_template.hide();
 				$('#day_contents').append(model_template);
 				model_template.delay(500*index).fadeTo('slow', 0.9);

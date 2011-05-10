@@ -60,7 +60,7 @@ var DayIndex = Backbone.View.extend({
 	render: function(){
 		$('#app').html(this.el);
 		this.collection.each(function(item){
-			var item_template = $('<li><h3><a href="#!/day/'+item.get('number')+'">('+item.get('number')+')</a></h3></li>');
+			var item_template = $(JST['days/index']({model: item}));
 			item_template.hide();
 			$('#days').append(item_template);
 			item_template.delay(item.get('number')*500).fadeIn('slow');
@@ -84,7 +84,7 @@ var DayShow = Backbone.View.extend({
 		$('#day').append('<div id="day_contents"></div>');
 		$('#day_contents').delay(1500).fadeIn('slow', function(){
 			self.collection.each(function(model, index){
-				var model_template = $(JST['content_image']({model: model}));
+				var model_template = $(JST['contents/content_image']({model: model}));
 				model_template.hide();
 				$('#day_contents').append(model_template);
 				model_template.delay(500*index).fadeTo('slow', 0.9);
@@ -96,5 +96,6 @@ var DayShow = Backbone.View.extend({
 (function(){
 window.JST = window.JST || {};
 var template = function(str){var fn = new Function('obj', 'var p=[],print=function(){p.push.apply(p,arguments);};with(obj){p.push(\''+str.replace(/[\r\t\n]/g, " ").replace(/'(?=[^%]*%>)/g,"\t").split("'").join("\\'").split("\t").join("'").replace(/<%=(.+?)%>/g,"',$1,'").split("<%").join("');").split("%>").join("p.push('")+"');}return p.join('');"); return fn;};
-window.JST['content_image'] = template('<a href="<%= model.get(\'content\') %>" class="day_content"><img src="<%= model.get(\'content\') %>" height="100" /></a>');
+window.JST['contents/content_image'] = template('<a href="<%= model.get(\'content\') %>" class="day_content"><img src="<%= model.get(\'content\') %>" height="100" /></a>');
+window.JST['days/index'] = template('<li><h3><a href="#!/days/<%= model.get(\'number\') %>">(<%= model.get(\'number\') %>)</a></h3></li>');
 })();
