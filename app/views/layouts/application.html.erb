@@ -4,10 +4,11 @@
   <title><%= title %> of HPNeo</title>
   <%= stylesheet_link_tag :all %>
   <link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+  <link href='/javascripts/libs/fancybox/jquery.fancybox-1.3.4.css' rel='stylesheet' type='text/css'>
   <%= csrf_meta_tag %>
 </head>
 <body>
-	<h1 id="title"><%= title %> of HPNeo</h1>
+	<h1 id="title"><a href="<%= root_path %>"><%= title %> of HPNeo</a></h1>
 	<div id="app">
 		<%= yield %>
 	</div>

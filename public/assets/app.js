@@ -80,20 +80,21 @@ var DayShow = Backbone.View.extend({
 		var day_template = $('<h2 id="day_number">'+this.collection.day+'</h2>');
 		day_template.hide();
 		$('#day').append(day_template);
-		day_template.delay(500).fadeIn(700);
+		day_template.delay(500).fadeIn(800);
 		$('#day').append('<div id="day_contents"></div>');
 		$('#day_contents').delay(1500).fadeIn('slow', function(){
 			self.collection.each(function(model, index){
 				var model_template = $(JST['content_image']({model: model}));
 				model_template.hide();
-				$('#day_contents').delay(500*index).append(model_template);
-				model_template.fadeTo('slow', 0.9);
+				$('#day_contents').append(model_template);
+				model_template.delay(500*index).fadeTo('slow', 0.9);
 			});
+			$('a.day_content').fancybox();
 		});
 	}
 });
 (function(){
 window.JST = window.JST || {};
 var template = function(str){var fn = new Function('obj', 'var p=[],print=function(){p.push.apply(p,arguments);};with(obj){p.push(\''+str.replace(/[\r\t\n]/g, " ").replace(/'(?=[^%]*%>)/g,"\t").split("'").join("\\'").split("\t").join("'").replace(/<%=(.+?)%>/g,"',$1,'").split("<%").join("');").split("%>").join("p.push('")+"');}return p.join('');"); return fn;};
-window.JST['content_image'] = template('<img src="<%= model.get(\'content\') %>" height="100" />');
+window.JST['content_image'] = template('<a href="<%= model.get(\'content\') %>" class="day_content"><img src="<%= model.get(\'content\') %>" height="100" /></a>');
 })();
