@@ -8,6 +8,7 @@ javascripts:
     - public/javascripts/libs/underscore.js
     - public/javascripts/libs/backbone.js
     - public/javascripts/libs/fancybox/*.js
+    - public/javascripts/libs/jquery.masonry.min.js
   app:
     - public/javascripts/application.js
     - public/javascripts/controllers.js

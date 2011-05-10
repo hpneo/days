@@ -81,21 +81,25 @@ var DayShow = Backbone.View.extend({
 		day_template.hide();
 		$('#day').append(day_template);
 		day_template.delay(500).fadeIn(800);
-		$('#day').append('<div id="day_contents"></div>');
+		$('#day').append('<div id="day_contents"><div id="content_wrapper"></div></div>');
 		$('#day_contents').delay(1500).fadeIn('slow', function(){
 			self.collection.each(function(model, index){
 				var model_template = $(JST['contents/content_image']({model: model}));
 				model_template.hide();
-				$('#day_contents').append(model_template);
+				$('#content_wrapper').append(model_template);
 				model_template.delay(500*index).fadeTo('slow', 0.9);
 			});
 			$('a.day_content').fancybox();
+			$('#content_wrapper').masonry({
+				singleMode: true,
+				columnWidth: 200
+			});
 		});
 	}
 });
 (function(){
 window.JST = window.JST || {};
 var template = function(str){var fn = new Function('obj', 'var p=[],print=function(){p.push.apply(p,arguments);};with(obj){p.push(\''+str.replace(/[\r\t\n]/g, " ").replace(/'(?=[^%]*%>)/g,"\t").split("'").join("\\'").split("\t").join("'").replace(/<%=(.+?)%>/g,"',$1,'").split("<%").join("');").split("%>").join("p.push('")+"');}return p.join('');"); return fn;};
-window.JST['contents/content_image'] = template('<a href="<%= model.get(\'content\') %>" class="day_content"><img src="<%= model.get(\'content\') %>" height="100" /></a>');
+window.JST['contents/content_image'] = template('<a href="<%= model.get(\'content\') %>" class="day_content" rel="day_content"><img src="<%= model.get(\'content\') %>" width="200" /></a>');
 window.JST['days/index'] = template('<li><h3><a href="#!/days/<%= model.get(\'number\') %>">(<%= model.get(\'number\') %>)</a></h3></li>');
 })();

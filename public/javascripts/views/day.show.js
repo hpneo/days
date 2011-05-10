@@ -11,15 +11,19 @@ var DayShow = Backbone.View.extend({
 		day_template.hide();
 		$('#day').append(day_template);
 		day_template.delay(500).fadeIn(800);
-		$('#day').append('<div id="day_contents"></div>');
+		$('#day').append('<div id="day_contents"><div id="content_wrapper"></div></div>');
 		$('#day_contents').delay(1500).fadeIn('slow', function(){
 			self.collection.each(function(model, index){
 				var model_template = $(JST['contents/content_image']({model: model}));
 				model_template.hide();
-				$('#day_contents').append(model_template);
+				$('#content_wrapper').append(model_template);
 				model_template.delay(500*index).fadeTo('slow', 0.9);
 			});
 			$('a.day_content').fancybox();
+			$('#content_wrapper').masonry({
+				singleMode: true,
+				columnWidth: 200
+			});
 		});
 	}
 });
