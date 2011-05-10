@@ -3,7 +3,7 @@ var AppController = Backbone.Controller.extend({
 		'':			'home',
 		'!':			'home',
 		'!/':			'home',
-		'!/day/:number':	'day'
+		'!/days/:number':	'day'
 	},
 	home: function(){
 		var days = new Days();
