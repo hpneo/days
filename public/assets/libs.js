@@ -11013,3 +11013,121 @@ a.posLeft=Math.round(h.position().left);h.remove()}if(a.masoned&&b.appendedConte
 if(f===1)g.placeBrick(i,a.colCount,a.colY,a,b);else{var k=a.colCount+1-f,m=[];for(c=0;c<k;c++){var p=a.colY.slice(c,c+f);m[c]=Math.max.apply(Math,p)}g.placeBrick(i,k,m,a,b)}});a.wallH=Math.max.apply(Math,a.colY);d.applyStyle({height:a.wallH-a.posTop},e.extend(true,[],b.animationOptions));a.masoned||setTimeout(function(){d.addClass("masoned")},1);l.call(a.$bricks);d.data("masonry",a)},resize:function(d,b,a){a.masoned=!!d.data("masonry");var c=d.data("masonry").colCount;g.setup(d,b,a);a.colCount!=c&&
 g.arrange(d,b,a)}};return this.each(function(){var d=e(this),b={};b.masoned=!!d.data("masonry");var a=b.masoned?d.data("masonry").options:{},c=e.extend({},e.fn.masonry.defaults,a,j),h=a.resizeable;b.options=c.saveOptions?c:a;l=l||function(){};g.getBricks(d,b,c);if(!b.$bricks.length)return this;g.setup(d,c,b);g.arrange(d,c,b);!h&&c.resizeable&&e(window).bind("smartresize.masonry",function(){g.resize(d,c,b)});h&&!c.resizeable&&e(window).unbind("smartresize.masonry")})};e.fn.masonry.defaults={singleMode:false,
 columnWidth:undefined,itemSelector:undefined,appendedContent:undefined,saveOptions:true,resizeable:true,animate:false,animationOptions:{}}})(jQuery);
+/*
+ * waitForImages 1.2.1
+ * -----------------
+ * Provides a callback when all images have loaded in your given selector.
+ * http://www.alexanderdickson.com/
+ *
+ *
+ * Copyright (c) 2011 Alex Dickson
+ * Licensed under the MIT licenses.
+ * See website for more info.
+ *
+ */
+
+;(function($) {
+    $.fn.waitForImages = function(finishedCallback, eachCallback, waitForAll) {
+
+        // Handle options object.
+        if (typeof finishedCallback === 'object') {
+            eachCallback = finishedCallback.each;
+            waitForAll = finishedCallback.waitForAll;
+            finishedCallback = finishedCallback.finished;
+        }
+
+        // Handle missing callback.
+        eachCallback = eachCallback || function() {};
+
+        // Convert waitForAll to Boolean
+        waitForAll = !! waitForAll;
+
+        // Ensure callbacks are functions.
+        if (!$.isFunction(finishedCallback) || !$.isFunction(eachCallback)) {
+            throw {
+                name: 'invalid_callback',
+                message: 'An invalid callback was supplied.'
+            };
+        };
+
+        return this.each(function() {
+            // Build a list of all imgs, dependent on what images will be considered.
+            var obj = $(this),
+                allImgs = [];
+
+            if (waitForAll) {
+                // CSS properties which may contain an image.
+                var hasImgProperties = $.fn.waitForImages.hasImgProperties || [
+                    'backgroundImage',
+                    'listStyleImage',
+                    'borderImage',
+                    'borderCornerImage'
+                    ];
+                   
+                var matchUrl = /url\(['"]?(.*?)['"]?\)/g;
+
+                // Get all elements, as any one of them could have a background image.
+                obj.find('*').filter(function() {
+                    var element = $(this);
+
+                    // If an `img` element, add it. But keep iterating in case it has a background image too.
+                    if (element.is('img')) {
+                        allImgs.push({
+                            src: element.attr('src'),
+                            element: element[0]
+                        });
+                    }
+
+                    $.each(hasImgProperties, function(i, property) {
+                        var propertyValue = element.css(property);
+                        // If it doesn't contain this property, skip.
+                        if ( ! propertyValue) {
+                            return true;
+                        }
+
+                        // Get all url() of this element.
+                        var match;
+                        while (match = matchUrl.exec(propertyValue)) {
+                            allImgs.push({
+                                src: match[1],
+                                element: element[0]
+                            });
+                        };
+                    });
+                });
+            } else {
+                // For images only, the task is simpler.
+                obj.find('img').each(function() {
+                    allImgs.push({
+                        src: this.src,
+                        element: this
+                    });
+                });
+            };
+
+            var allImgsLength = allImgs.length,
+                allImgsLoaded = 0;
+
+            // If no images found, don't bother.
+            if (allImgsLength == 0) {
+                finishedCallback.call(obj[0]);
+            };
+
+            $.each(allImgs, function(i, img) {
+
+                var image = new Image;
+
+                image.onload = function() {
+                    allImgsLoaded++;
+                    eachCallback.call(img.element, allImgsLoaded, allImgsLength);
+                    if (allImgsLoaded == allImgsLength) {
+                        finishedCallback.call(obj[0]);
+                        return false;
+                    };
+                };
+
+                image.src = img.src;
+            });
+        });
+    };
+})(jQuery);
