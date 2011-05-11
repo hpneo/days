@@ -87,7 +87,7 @@ var DayShow = Backbone.View.extend({
 				var model_template = $(JST['contents/content_image']({model: model}));
 				model_template.hide();
 				$('#content_wrapper').append(model_template);
-				model_template.delay(500*index).fadeTo('slow', 0.9);
+				model_template.delay(500*index).fadeTo(100*self.collection.length-100*index, 0.9);
 			});
 			$('a.day_content').fancybox();
 			$('body').waitForImages(function(){
