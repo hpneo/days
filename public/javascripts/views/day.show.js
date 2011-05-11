@@ -20,7 +20,7 @@ var DayShow = Backbone.View.extend({
 				model_template.delay(500*index).fadeTo('slow', 0.9);
 			});
 			$('a.day_content').fancybox();
-			$(document).ready(function(){
+			$(window).ready(function(){
 				$('#content_wrapper').masonry({
 					singleMode: true,
 					columnWidth: 200,
