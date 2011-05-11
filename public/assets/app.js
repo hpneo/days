@@ -101,6 +101,6 @@ var DayShow = Backbone.View.extend({
 (function(){
 window.JST = window.JST || {};
 var template = function(str){var fn = new Function('obj', 'var p=[],print=function(){p.push.apply(p,arguments);};with(obj){p.push(\''+str.replace(/[\r\t\n]/g, " ").replace(/'(?=[^%]*%>)/g,"\t").split("'").join("\\'").split("\t").join("'").replace(/<%=(.+?)%>/g,"',$1,'").split("<%").join("');").split("%>").join("p.push('")+"');}return p.join('');"); return fn;};
-window.JST['contents/content_image'] = template('<a href="<%= model.get(\'content\') %>" class="day_content" rel="day_content"><img src="<%= model.get(\'content\') %>" width="200" /></a>');
+window.JST['contents/content_image'] = template('<a href="<%= model.get(\'content\') %>" class="day_content" rel="day_content" style="width:200px;"><img src="<%= model.get(\'content\') %>" width="200" /></a>');
 window.JST['days/index'] = template('<li><h3><a href="#!/days/<%= model.get(\'number\') %>">(<%= model.get(\'number\') %>)</a></h3></li>');
 })();
