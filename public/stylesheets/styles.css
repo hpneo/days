@@ -64,7 +64,7 @@ h1#title a{
 		position:absolute;
 		z-index:2;
 	}
-		#day #day_contents .day_content{
+		#day #day_contents .day_content, #day #day_contents .day_content img{
 			display:block;
 			width:200px;
 		}
