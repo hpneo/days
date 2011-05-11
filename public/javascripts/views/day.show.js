@@ -20,10 +20,12 @@ var DayShow = Backbone.View.extend({
 				model_template.delay(500*index).fadeTo('slow', 0.9);
 			});
 			$('a.day_content').fancybox();
-			$('#content_wrapper').masonry({
-				singleMode: true,
-				columnWidth: 200,
-				animate: true
+			$(document).ready(function(){
+				$('#content_wrapper').masonry({
+					singleMode: true,
+					columnWidth: 200,
+					animate: true
+				});
 			});
 		});
 	}
