@@ -43,13 +43,13 @@ h1#title a{
 		}
 #day{
 	display:block;
-	width:60%;
+	width:800px;
 	margin:0 auto;
 }
 	#day h2#day_number{
 		display:block;
 		position:absolute;
-		width:60%;
+		width:800px;
 		color:#5b5b5b;
 		font-size:12em;
 		margin:0;
@@ -60,7 +60,7 @@ h1#title a{
 	}
 	#day #day_contents{
 		display:none;
-		width:60%;
+		width:800px;
 		position:absolute;
 		z-index:2;
 	}
