@@ -10,7 +10,7 @@ class Imgur
 			:key => Imgur::API_Key,
 			:image => ActiveSupport::Base64.encode64(self.image.read)
 		}
-		self.response = ::JSON.parse(RestClient.post('http://api.imgur.com/2/upload.json', data, :content_type => :json, :accept => :json))
+		self.response = ::ActiveSupport::JSON.decode(RestClient.post('http://api.imgur.com/2/upload.json', data, :content_type => :json, :accept => :json))
 		!self.response.nil?
 	end
 
