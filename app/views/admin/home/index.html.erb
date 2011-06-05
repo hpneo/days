@@ -1,0 +1,6 @@
+<a href="<%= new_admin_day_path %>" class="button big">Nuevo día</a>
+<ul>
+	<% @days.each do |day| %>
+		<%= day.number %>
+	<% end %>
+</ul>

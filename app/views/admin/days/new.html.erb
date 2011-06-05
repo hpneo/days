@@ -1,0 +1,14 @@
+<h2>Nuevo día:</h2>
+<%= form_for([:admin, @day]) do |f| %>
+	<p>
+		<%= f.label :number %>
+		<%= f.text_field :number %>
+	</p>
+	<p>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>

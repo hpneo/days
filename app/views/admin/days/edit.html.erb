@@ -1,0 +1,32 @@
+<h2>Día (<%= @day.number %>):</h2>
+<%= form_for([:admin, @day]) do |f| %>
+	<p>
+		<%= f.label :number %>
+		<%= f.text_field :number %>
+	</p>
+	<p>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</p>
+	<p>
+		<%= f.submit %>
+	</p>
+<% end %>
+<h3>Nuevo contenido:</h3>
+<%= form_for([:admin, @content], :html => {:multipart => true}) do |f| %>
+	<p>
+		<%= f.label :content %>
+		<%= f.file_field :content %>
+	</p>
+	<p>
+		<%= f.label :content_type %>
+		<%= f.select :content_type, {"Image" => :image} %>
+	</p>
+	<p>
+		<%= f.hidden_field :day_id %>
+		<%= f.submit %>
+	</p>
+<% end %>
+<% @contents.each do |content| %>
+	<%= image_tag(content.content) if content.content_type=='image' %>
+<% end %>
