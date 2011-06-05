@@ -9,6 +9,8 @@ gem 'sqlite3'
 gem 'jquery-rails'
 gem 'jammit'
 
+gem 'rest-client'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
