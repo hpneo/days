@@ -25,8 +25,6 @@ class Admin::ContentsController < ApplicationController
 				render :text => "error"
 			end
 		end
-		#@content = Content.new(params[:content])
-		#@content.save
 	end
 
 	def edit
